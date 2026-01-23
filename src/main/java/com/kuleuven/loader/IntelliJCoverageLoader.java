@@ -6,8 +6,6 @@ import com.intellij.rt.coverage.report.ReportLoadStrategy;
 import com.intellij.rt.coverage.report.Reporter;
 import com.intellij.rt.coverage.report.api.Filters;
 import com.intellij.rt.coverage.report.data.BinaryReport;
-import com.kuleuven.mapper.ProjectDataMapper;
-import com.kuleuven.model.CoverageReportDTO;
 
 import java.io.File;
 import java.io.FileReader;
@@ -30,7 +28,7 @@ public final class IntelliJCoverageLoader {
         String outputJson;
     }
 
-    public static CoverageReportDTO loadFromConfig(Path configPath) throws Exception {
+    public static ProjectData loadFromConfig(Path configPath) throws Exception {
         // 1. Parse config JSON
         Config cfg;
         try (FileReader reader = new FileReader(configPath.toFile())) {
@@ -93,12 +91,8 @@ public final class IntelliJCoverageLoader {
                         filters
                 );
 
-        // TODO: We could just fork the intellij-coverage and add exportJson to the ReportApi.
-        Reporter reporter = new Reporter(strategy, "json-export");
-        ProjectData projectData = reporter.getProjectData();
-
-        // 8. Convert to DTO model
-        return ProjectDataMapper.map(projectData);
+        Reporter reporter = new Reporter(strategy, "coverage-report");
+        return reporter.getProjectData();
     }
 
     public static Path getOutputJsonPath(Path configPath) throws Exception {

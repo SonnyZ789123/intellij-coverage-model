@@ -1,9 +1,11 @@
 package com.kuleuven.export;
 
-import com.kuleuven.loader.IntelliJCoverageLoader;
-import com.kuleuven.model.CoverageReportDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.intellij.rt.coverage.data.ProjectData;
+import com.kuleuven.loader.IntelliJCoverageLoader;
+import com.kuleuven.mapper.ProjectDataMapper;
+import com.kuleuven.model.CoverageReportDTO;
 
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -20,11 +22,11 @@ public final class CoverageExportMain {
 
         Path configPath = Path.of(args[0]);
 
-        // 1. Load coverage and build DTO model
-        CoverageReportDTO report =
-                IntelliJCoverageLoader.loadFromConfig(configPath);
+        // Load coverage and build DTO model
+        ProjectData projectData = IntelliJCoverageLoader.loadFromConfig(configPath);
 
-        // 2. Serialize DTOs to JSON
+        CoverageReportDTO report = ProjectDataMapper.map(projectData);
+
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
