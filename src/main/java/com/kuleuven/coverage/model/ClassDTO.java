@@ -1,4 +1,4 @@
-package com.kuleuven.model;
+package com.kuleuven.coverage.model;
 
 import java.util.ArrayList;
 import java.util.List;

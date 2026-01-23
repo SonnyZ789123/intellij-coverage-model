@@ -1,4 +1,4 @@
-package com.kuleuven.model;
+package com.kuleuven.coverage.model;
 
 public class InstructionSummaryDTO {
     public int straight;
