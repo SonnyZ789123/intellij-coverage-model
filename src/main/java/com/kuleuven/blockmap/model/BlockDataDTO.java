@@ -13,12 +13,12 @@ public class BlockDataDTO {
             int id,
             String blockHash,
             BlockCoverageDataDTO coverageData,
-            List<Integer> predecessorBlockIds,
+            List<Integer> parentBlockIds,
             List<Integer> successorBlockIds) {
         this.id = id;
         this.blockHash = blockHash;
         this.coverageData = coverageData;
-        this.parentBlockIds = predecessorBlockIds;
+        this.parentBlockIds = parentBlockIds;
         this.successorBlockIds = successorBlockIds;
     }
 }
