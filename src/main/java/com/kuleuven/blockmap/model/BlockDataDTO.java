@@ -4,21 +4,21 @@ import java.util.List;
 
 public class BlockDataDTO {
     public final int id;
-    public final String sourceHash;
+    public final String blockHash;
     public final BlockCoverageDataDTO coverageData;
-    public final List<Integer> parentBlockId;
+    public final List<Integer> parentBlockIds;
     public final List<Integer> successorBlockIds;
 
     public BlockDataDTO(
             int id,
-            String sourceHash,
+            String blockHash,
             BlockCoverageDataDTO coverageData,
             List<Integer> predecessorBlockIds,
             List<Integer> successorBlockIds) {
         this.id = id;
-        this.sourceHash = sourceHash;
+        this.blockHash = blockHash;
         this.coverageData = coverageData;
-        this.parentBlockId = predecessorBlockIds;
+        this.parentBlockIds = predecessorBlockIds;
         this.successorBlockIds = successorBlockIds;
     }
 }
